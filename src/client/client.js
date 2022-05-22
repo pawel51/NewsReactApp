@@ -1,5 +1,5 @@
 import axios from "axios"
-import {ACCESS_TOKEN_NAME, API_BASE_URL} from "./constants";
+import {ACCESS_TOKEN_NAME, API_BASE_URL} from "../constants";
 import qs from "qs";
 
 

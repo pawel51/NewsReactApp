@@ -1,29 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
 import {faHome} from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon as FaIcon} from "@fortawesome/react-fontawesome";
 import {useEffect, useState} from "react";
-import {getAllUsers, login} from "./client";
+import {getAllUsers, login} from "./client/client";
 import {ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME} from "./constants";
 import {Button, Col, Container, Row} from "react-bootstrap";
 
 function App() {
     const [users, setUsers] = useState([
         {
-            "id": 0,
-            "name": "name",
-            "username": "username",
-            "password": "xdd",
-            "roles": [
-                {
-                    "id": 1,
-                    "name": "role1name"
-                },
-                {
-                    "id": 2,
-                    "name": "role2name"
-                }
-            ]
+            "username": "",
+            "email": ""
         }
     ])
     const [tokens, setTokens] = useState({
@@ -37,7 +24,7 @@ function App() {
     }, [ tokens ])
 
     useEffect(() => {
-        login("john", "1234")
+        login("John Travolta", "1234")
             .then(data => {
                 setTokens(data)
             })
@@ -61,12 +48,12 @@ function App() {
             <FaIcon icon={faHome} className={"text-lg-center"}/>
             <Button onClick={loadStudents}>Load Students</Button>
             <ul>
-                {users.map((v) => {
+                {users.map((v,index) => {
                     return (
-                        <li key={v.id}>
+                        <li key={index}>
                             <Container>
                                 <Row>
-                                    <Col>{v.name}</Col>
+                                    <Col>{v.email}</Col>
                                     <Col>{v.username}</Col>
                                 </Row>
                             </Container>
