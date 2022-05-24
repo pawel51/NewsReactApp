@@ -5,6 +5,8 @@ import {useEffect, useState} from "react";
 import {getAllUsers, login} from "./client/client";
 import {ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME} from "./constants";
 import {Button, Col, Container, Row} from "react-bootstrap";
+import Categories from "./components/categories/categories"
+import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
     const [users, setUsers] = useState([
@@ -48,7 +50,7 @@ function App() {
             <FaIcon icon={faHome} className={"text-lg-center"}/>
             <Button onClick={loadStudents}>Load Students</Button>
             <ul>
-                {users.map((v,index) => {
+                {users.map((v ,index) => {
                     return (
                         <li key={index}>
                             <Container>
@@ -61,6 +63,11 @@ function App() {
                     )
                 })}
             </ul>
+            <Router>
+                <Routes>
+                    <Route path="/categories" element={<Categories/>} exact/>
+                </Routes>
+            </Router>
         </div>
     );
 }
