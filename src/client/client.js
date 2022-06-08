@@ -1,5 +1,5 @@
 import axios from "axios"
-import {ACCESS_TOKEN_NAME, API_BASE_URL} from "../constants";
+import {ACCESS_TOKEN_NAME, API_BASE_URL, REFRESH_TOKEN_NAME} from "../constants";
 import qs from "qs";
 
 
@@ -32,6 +32,23 @@ export const getAllUsers = async () => {
             'Content-Type': 'application/json'
         }
     };
-    const response = await axios(config)
+    let response = await axios(config)
+    if (response.data?.error_message !== undefined) {
+        const configToken = {
+            method: 'get',
+            url: `${API_BASE_URL}/api/refreshtoken`,
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN_NAME)}`,
+                'Content-Type': 'application/json'
+            }
+        };
+        const newTokens = await axios(configToken)
+        localStorage.setItem(ACCESS_TOKEN_NAME, newTokens.access_token)
+        localStorage.setItem(REFRESH_TOKEN_NAME, newTokens.refresh_token)
+        config.headers.Authorization = `Bearer ${newTokens.access_token}`;
+        response = await axios(config)
+    }
+
+
     return response.data
 }
