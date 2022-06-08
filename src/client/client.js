@@ -3,7 +3,6 @@ import {ACCESS_TOKEN_NAME, API_BASE_URL, REFRESH_TOKEN_NAME} from "../constants"
 import qs from "qs";
 
 
-
 export const login = async (username, password) => {
     const data = qs.stringify({
         'username': username,
@@ -28,7 +27,7 @@ export const getAllUsers = async () => {
         method: 'get',
         url: `${API_BASE_URL}/api/users`,
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN_NAME)}`,
+            'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
             'Content-Type': 'application/json'
         }
     };
@@ -52,3 +51,34 @@ export const getAllUsers = async () => {
 
     return response.data
 }
+
+export const getUser = async (username) => {
+    const config = {
+        method: 'get',
+        url: `${API_BASE_URL}/api/users/edit/${username}`,
+        headers: {
+            'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
+            'Content-Type': 'application/json'
+        }
+    };
+    const response = await axios(config)
+    return response.data
+}
+
+export const saveUserRoles = async (user) => {
+    const config = {
+        method: 'post',
+        url: `${API_BASE_URL}/api/role/addtouser/${user.username}`,
+        headers: {
+            'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
+            'Content-Type': 'application/json'
+        },
+        body: {
+            'roles': `${user.roles}`
+        }
+    };
+    const response = await axios(config)
+    return response.data
+}
+
+
