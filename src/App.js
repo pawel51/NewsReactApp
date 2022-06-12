@@ -7,6 +7,7 @@ import {ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME} from "./constants";
 import {Button, Col, Container, Nav, Navbar, NavDropdown, Row} from "react-bootstrap";
 import Categories from "./components/categories/categories"
 import {BrowserRouter as Router, Routes, Route, Switch, Link} from 'react-router-dom';
+import _NavigationBar from "./components/Shared/_NavigationBar";
 
 function App() {
     const [users, setUsers] = useState([
@@ -47,22 +48,7 @@ function App() {
 
     return (
         <div className="App">
-            <Navbar bg="light" variant="light">
-                <Container>
-                    <Navbar.Brand href="/"><FaIcon icon={faHome}/></Navbar.Brand>
-                    <Nav className="me-auto">
-                        <Nav.Link as={Link} to={"/categories"}>Categories</Nav.Link>
-                        <Nav.Link as={Link} to={"/"}>Login</Nav.Link>
-                    </Nav>
-                    <NavDropdown title="More" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">
-                            <Button value={"Quit"}>
-                                <FaIcon icon={faDoorOpen}/>
-                            </Button>
-                        </NavDropdown.Item>
-                    </NavDropdown>
-                </Container>
-            </Navbar>
+            <_NavigationBar></_NavigationBar>
         </div>
     );
 }

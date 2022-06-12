@@ -19,6 +19,9 @@ const _NavigationBar = (props) => {
                 <Nav className="me-auto">
                     <Nav.Link className={"lastNav"} as={Link} to={"/categories"}>Categories</Nav.Link>
                 </Nav>
+                <Nav className="me-auto">
+                    <Nav.Link className={"lastNav"} as={Link} to={"/announcements"}>Announcements</Nav.Link>
+                </Nav>
                 <NavDropdown title="More" id="basic-nav-dropdown">
                     <NavDropdown.Item as={Link} to={"/"} onClick={logout}>
                         Login

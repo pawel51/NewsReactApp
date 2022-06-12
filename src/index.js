@@ -11,6 +11,7 @@ import {Container, Nav, Navbar} from "react-bootstrap";
 import {FontAwesomeIcon as FaIcon} from "@fortawesome/react-fontawesome";
 import {faHome} from "@fortawesome/free-solid-svg-icons";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import Announcements from "./components/news/Announcements";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,6 +24,9 @@ root.render(
             </Route>
             <PrivateRoute path="/categories">
                 <Categories/>
+            </PrivateRoute>
+            <PrivateRoute path="/announcements">
+                <Announcements/>
             </PrivateRoute>
         </Switch>
     </BrowserRouter>
