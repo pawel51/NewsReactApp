@@ -50,15 +50,14 @@ export const getUser = async (username) => {
 
 export const saveUserRoles = async (user) => {
     const config = {
-        method: 'post',
+        method: 'put',
         url: `${API_BASE_URL}/api/role/addtouser/${user.username}`,
         headers: {
             'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
             'Content-Type': 'application/json'
         },
-        body: {
-            'roles': `${user.roles}`
-        }
+        data: JSON.stringify(user)
+
     };
     const response = await axios(config)
     return response.data

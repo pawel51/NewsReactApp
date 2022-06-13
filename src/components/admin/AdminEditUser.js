@@ -16,8 +16,15 @@ function AdminEditUser() {
         {value: 'ROLE_USER', label: 'ROLE_USER'},
         {value: 'ROLE_MANAGER', label: 'ROLE_MANAGER'},
         {value: 'ROLE_ADMIN', label: 'ROLE_ADMIN'},
-        {value: 'ROLE_SUPERADMIN', label: 'ROLEROLE_SUPERADMIN_USER'}
     ];
+
+    class Role {
+        constructor(id, name) {
+            this.id = id
+            this.name = name
+
+        }
+    }
 
     const [roles, setRoles] = useState([]);
 
@@ -65,10 +72,13 @@ function AdminEditUser() {
         sessionStorage.setItem(REFRESH_TOKEN_NAME, tokens.refresh_token);
     }, [tokens]);
 
+
     const loadUser = async function(username) {
         await getUser(username)
             .then((data) => {
                 setUser(data);
+                setRoles(data.roles)
+                console.log(data)
             })
             .catch((err) => {
                 console.log(err.response);
@@ -82,19 +92,30 @@ function AdminEditUser() {
 
     const saveChanges = (e) => {
         e.preventDefault()
-        console.log(roles)
+
+        const rolesDTO = roles.map(r => {
+            let roleDTO 
+
+            if(r === 'ROLE_USER') roleDTO = new Role(1, r)
+            else if(r === 'ROLE_USER') roleDTO = new Role(1, r)
+            else if(r === 'ROLE_MANAGER') roleDTO =  new Role(2, r)
+            else if(r === 'ROLE_ADMIN')  roleDTO = new Role(3, r)
+        
+            return roleDTO
+        })
+
 
         const modifiedUser = {
             username: user.username,
             email: user.email,
             id: user.id,
-            roles: roles,
+            roles: rolesDTO,
         }
 
         console.log(modifiedUser)
         modifyUser(modifiedUser)
-       
 
+        
 
     }
 
