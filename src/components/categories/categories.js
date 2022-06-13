@@ -1,20 +1,29 @@
 import '../../App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
-import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import {faHome} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon as FaIcon} from "@fortawesome/react-fontawesome";
-import {useEffect, useState} from "react";
-import {Button, Modal, Col, Container, Row} from "react-bootstrap";
+import React, {useEffect, useState} from "react";
+import {Button, Modal, Col, Container, Row, Navbar, Nav} from "react-bootstrap";
 import {addCategory, deleteCategory, editCategory, getAllCategories} from "./categoryAPICalls";
+import {Link, withRouter} from "react-router-dom";
+import {FontAwesomeIcon as FaIcon} from "@fortawesome/react-fontawesome";
+import {faHome} from "@fortawesome/free-solid-svg-icons";
+import _NavigationBar from "../Shared/_NavigationBar";
 
-function Categories() {
+function Categories(props) {
 
     //loadCategoriesOnStart
     useEffect(() => {
         getAllCategories()
             .then(data => {
-                setCategories(data)
+                if (data.error_message?.startsWith("The Token has expired") ?? false){
+                    props.history.push("/")
+                }
+                else if (data === null){
+                    setCategories([])
+                }
+                else {
+                    setCategories(data)
+                }
             })
             .catch(err => {
                 console.log(err.response)
@@ -114,6 +123,7 @@ function Categories() {
     //page
     return (
         <div className="row">
+            <_NavigationBar/>
             <div className="col-2"></div>
             <div className="col-8">
                 <div className="row">
@@ -181,4 +191,4 @@ function Categories() {
         );
 }
 
-export default Categories;
+export default withRouter(Categories);

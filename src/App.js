@@ -1,22 +1,25 @@
 import './App.css';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon as FaIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useState } from 'react';
-import { getAllUsers, login } from './client/client';
-import { ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME } from './constants';
-import { Button, Col, Container, Row } from 'react-bootstrap';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import AdminPanel from './components/admin/AdminPanel';
-import AdminUsers from './components/admin/AdminUsers'
-import AdminEditUser from './components/admin/AdminEditUser';
-import Home from './components/Home';
+import {faHome, faBook, faDoorOpen} from "@fortawesome/free-solid-svg-icons"
+import {FontAwesomeIcon as FaIcon} from "@fortawesome/react-fontawesome";
+import {useEffect, useState} from "react";
+import {getAllUsers, login} from "./client/client";
+import {ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME} from "./constants";
+import {Button, Col, Container, Nav, Navbar, NavDropdown, Row} from "react-bootstrap";
+import Categories from "./components/categories/categories"
+import {BrowserRouter as Router, Routes, Route, Switch, Link} from 'react-router-dom';
+import _NavigationBar from "./components/Shared/_NavigationBar";
 
 function App() {
-
+    const [users, setUsers] = useState([
+        {
+            "username": "",
+            "email": ""
+        }
+    ])
     const [tokens, setTokens] = useState({
-        access_token: '',
-        refresh_token: '',
-    });
+        access_token: "",
+        refresh_token: ""
+    })
 
     useEffect(() => {
         sessionStorage.setItem(ACCESS_TOKEN_NAME, tokens.access_token);
@@ -32,21 +35,9 @@ function App() {
         }, [])
         
     return (
-    <Router>
         <div className="App">
-
-                <Routes>
-                    <Route path="/" element={<Home />} exact={true}></Route>
-                    <Route path="/adminpanel" element={<AdminPanel />}></Route>
-                    <Route path="/adminpanel/users" element={<AdminUsers />}></Route>
-                    <Route path="/adminpanel/users/edit/:username" element={<AdminEditUser />}></Route>
-                    {/* <Route path="/adminpanel/users/:id" element={<AdminUserEdit />}></Route> */}
-
-                </Routes>
-
-        
+            <_NavigationBar></_NavigationBar>
         </div>
-        </Router>
     );
 }
 
