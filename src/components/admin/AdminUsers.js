@@ -24,8 +24,8 @@ function AdminUsers() {
     });
 
     useEffect(() => {
-        localStorage.setItem(ACCESS_TOKEN_NAME, tokens.access_token);
-        localStorage.setItem(REFRESH_TOKEN_NAME, tokens.refresh_token);
+        sessionStorage.setItem(ACCESS_TOKEN_NAME, tokens.access_token);
+        sessionStorage.setItem(REFRESH_TOKEN_NAME, tokens.refresh_token);
     }, [tokens]);
 
     useEffect(() => {
@@ -55,7 +55,7 @@ function AdminUsers() {
 
                 <FaIcon icon={faHome} className={'text-lg-center'} />
                 <Button onClick={loadStudents}>Load Students</Button>
-
+                {console.log(users)}
                 <ul>
                     {users.map((v, index) => {
                         return (
@@ -64,8 +64,13 @@ function AdminUsers() {
                                     <Row>
                                         <Col>{v.email}</Col>
                                         <Col>{v.username}</Col>
-                                        <Col>{v.id}</Col>
-                                        <Col>{v.roles}</Col>
+                                        {/* {v.roles.map(role => (
+                                            <Col key={role}>
+                                                <p>{role}</p>
+                                            </Col>
+                                        ))
+                                        }     */}
+                                        
                                         <Col>
                                             <Link to={`/adminpanel/users/edit/${v.username}`}>
                                                 <Button>Edit</Button>

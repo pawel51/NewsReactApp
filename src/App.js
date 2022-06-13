@@ -22,30 +22,18 @@ function App() {
     })
 
     useEffect(() => {
-        localStorage.setItem(ACCESS_TOKEN_NAME, tokens.access_token)
-        localStorage.setItem(REFRESH_TOKEN_NAME, tokens.refresh_token)
-    }, [ tokens ])
+        sessionStorage.setItem(ACCESS_TOKEN_NAME, tokens.access_token);
+        sessionStorage.setItem(REFRESH_TOKEN_NAME, tokens.refresh_token);
+    }, [tokens]);
 
     useEffect(() => {
         login("John Travolta", "1234")
             .then(data => {
                 setTokens(data)
+            
             })
-            .catch(err => {
-                console.log(err.response)
-            })
-    }, [])
-
-    const loadStudents = () => {
-        getAllUsers()
-            .then(data => {
-                setUsers(data)
-            })
-            .catch(err => {
-                console.log(err.response)
-            })
-    }
-
+        }, [])
+        
     return (
         <div className="App">
             <_NavigationBar></_NavigationBar>
