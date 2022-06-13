@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { getAllUsers, login } from '../../client/client';
 import { ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME } from '../../constants';
 import { Button, Col, Container, Row } from 'react-bootstrap';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes, withRouter} from 'react-router-dom';
 import AdminUsers from './AdminUsers';
 
 import { Link } from 'react-router-dom';
@@ -16,8 +16,8 @@ function AdminPanel() {
     });
 
     useEffect(() => {
-        localStorage.setItem(ACCESS_TOKEN_NAME, tokens.access_token);
-        localStorage.setItem(REFRESH_TOKEN_NAME, tokens.refresh_token);
+        sessionStorage.setItem(ACCESS_TOKEN_NAME, tokens.access_token);
+        sessionStorage.setItem(REFRESH_TOKEN_NAME, tokens.refresh_token);
     }, [tokens]);
 
     return (

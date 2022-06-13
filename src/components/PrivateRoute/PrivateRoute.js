@@ -7,7 +7,7 @@ function PrivateRoute({ children, ...rest }) {
         <Route
             {...rest}
             render={({ location }) =>
-                localStorage.getItem(ACCESS_TOKEN_NAME) ? (
+                sessionStorage.getItem(ACCESS_TOKEN_NAME) ? (
                     children
                 ) : (
                     <Redirect

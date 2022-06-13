@@ -14,8 +14,8 @@ function Navigation() {
     });
 
     useEffect(() => {
-        localStorage.setItem(ACCESS_TOKEN_NAME, tokens.access_token);
-        localStorage.setItem(REFRESH_TOKEN_NAME, tokens.refresh_token);
+        sessionStorage.setItem(ACCESS_TOKEN_NAME, tokens.access_token);
+        sessionStorage.setItem(REFRESH_TOKEN_NAME, tokens.refresh_token);
     }, [tokens]);
 
     return (

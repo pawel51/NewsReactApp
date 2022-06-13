@@ -8,7 +8,7 @@ export const getAllNews = async (id) => {
         method: 'get',
         url: `${API_BASE_URL}/api/users/${id}/announcements`,
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN_NAME)}`,
+            'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
             'Content-Type': 'application/json'
         }
     };
@@ -29,7 +29,7 @@ export const getUserId = async () => {
         method: 'get',
         url: `${API_BASE_URL}/api/user`,
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN_NAME)}`,
+            'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
             'Content-Type': 'application/json'
         }
     };
@@ -48,7 +48,7 @@ export const editAnnouncement = async (editItem) => {
         method: 'put',
         url: `${API_BASE_URL}/api/announcements/${editItem.id}`,
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN_NAME)}`,
+            'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
             'Content-Type': 'application/json'
         },
         data: editItem
@@ -67,7 +67,7 @@ export const deleteAnnouncement = async (id) => {
         method: 'delete',
         url: `${API_BASE_URL}/api/announcements/${id}`,
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN_NAME)}`,
+            'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
             'Content-Type': 'application/json'
         }
     };
@@ -93,7 +93,7 @@ export const addAnnouncement = async (newItem) => {
         method: 'post',
         url: `${API_BASE_URL}/api/announcements`,
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN_NAME)}`,
+            'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
             'Content-Type': 'application/json'
         },
         data: dataStr
@@ -119,7 +119,7 @@ export const getAllStatuses = async () => {
         method: 'get',
         url: `${API_BASE_URL}/api/announcements/states`,
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN_NAME)}`,
+            'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
             'Content-Type': 'application/json'
         }
     };

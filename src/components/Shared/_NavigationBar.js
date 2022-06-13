@@ -8,8 +8,8 @@ import "../../App.css"
 const _NavigationBar = (props) => {
 
     const logout = () => {
-        localStorage.removeItem(ACCESS_TOKEN_NAME)
-        localStorage.removeItem(REFRESH_TOKEN_NAME)
+        sessionStorage.removeItem(ACCESS_TOKEN_NAME)
+        sessionStorage.removeItem(REFRESH_TOKEN_NAME)
     }
 
     return (
@@ -23,7 +23,7 @@ const _NavigationBar = (props) => {
                     <Nav.Link className={"lastNav"} as={Link} to={"/announcements"}>Announcements</Nav.Link>
                 </Nav>
                 <Nav className="me-auto">
-                    <Nav.Link className={"lastNav"} as={Link} to={"/adminpanel"}>Announcements</Nav.Link>
+                    <Nav.Link className={"lastNav"} as={Link} to={"/adminpanel"}>AdminPanel</Nav.Link>
                 </Nav>
                 <NavDropdown title="More" id="basic-nav-dropdown">
                     <NavDropdown.Item as={Link} to={"/"} onClick={logout}>

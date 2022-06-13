@@ -37,13 +37,13 @@ export const getAllUsers = async () => {
             method: 'get',
             url: `${API_BASE_URL}/api/refreshtoken`,
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN_NAME)}`,
+                'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
                 'Content-Type': 'application/json'
             }
         };
         const newTokens = await axios(configToken)
-        localStorage.setItem(ACCESS_TOKEN_NAME, newTokens.access_token)
-        localStorage.setItem(REFRESH_TOKEN_NAME, newTokens.refresh_token)
+        sessionStorage.setItem(ACCESS_TOKEN_NAME, newTokens.access_token)
+        sessionStorage.setItem(REFRESH_TOKEN_NAME, newTokens.refresh_token)
         config.headers.Authorization = `Bearer ${newTokens.access_token}`;
         response = await axios(config)
     }

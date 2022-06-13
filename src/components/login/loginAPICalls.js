@@ -21,8 +21,8 @@ export const login = async (creds) => {
     return await axios.request(config)
         .then(function (response) {
             if (response.status === 200) {
-                localStorage.setItem(ACCESS_TOKEN_NAME, response.data.access_token);
-                localStorage.setItem(REFRESH_TOKEN_NAME, response.data.refresh_token);
+                sessionStorage.setItem(ACCESS_TOKEN_NAME, response.data.access_token);
+                sessionStorage.setItem(REFRESH_TOKEN_NAME, response.data.refresh_token);
                 return true
             }
             return false

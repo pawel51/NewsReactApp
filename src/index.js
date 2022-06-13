@@ -12,6 +12,9 @@ import {FontAwesomeIcon as FaIcon} from "@fortawesome/react-fontawesome";
 import {faHome} from "@fortawesome/free-solid-svg-icons";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Announcements from "./components/news/Announcements";
+import AdminPanel from "./components/admin/AdminPanel";
+import AdminUsers from "./components/admin/AdminUsers";
+import AdminEditUser from "./components/admin/AdminEditUser";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -28,9 +31,16 @@ root.render(
             <PrivateRoute path="/announcements">
                 <Announcements/>
             </PrivateRoute>
-            <PrivateRoute path="/adminpanel">
-                <Announcements/>
+            <PrivateRoute path="/adminpanel/users" exact={true}>
+                <AdminUsers/>
             </PrivateRoute>
+            <PrivateRoute path="/adminpanel/users/edit/:username" exact={true}>
+                <AdminEditUser/>
+            </PrivateRoute>
+            <PrivateRoute path="/adminpanel">
+                <AdminPanel/>
+            </PrivateRoute>
+
         </Switch>
     </BrowserRouter>
 

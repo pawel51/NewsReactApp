@@ -7,7 +7,7 @@ export const getAllCategories = async () => {
         method: 'get',
         url: `${API_BASE_URL}/api/categories`,
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN_NAME)}`,
+            'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
             'Content-Type': 'application/json'
         }
     };
@@ -22,7 +22,7 @@ export const addCategory = async (name) => {
     const config = {
         method: 'post',
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN_NAME)}`,
+            'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
             'Content-Type': 'application/json'
         }
     };
@@ -37,7 +37,7 @@ export const deleteCategory = async (id) => {
     const config = {
         method: 'delete',
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN_NAME)}`,
+            'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
             'Content-Type': 'application/json'
         }
     };
@@ -50,7 +50,7 @@ export const editCategory = async (id, name) => {
     const config = {
         method: 'put',
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN_NAME)}`,
+            'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
             'Content-Type': 'application/json'
         }
     };

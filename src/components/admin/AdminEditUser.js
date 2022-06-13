@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { getAllUsers, getUser, login, saveUserRoles } from '../../client/client';
 import { ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME } from '../../constants';
 import { Button, Col, Container, Row } from 'react-bootstrap';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes, withRouter} from 'react-router-dom';
 import Navigation from '../Navigation';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
