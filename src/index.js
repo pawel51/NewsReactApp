@@ -28,6 +28,9 @@ root.render(
             <PrivateRoute path="/announcements">
                 <Announcements/>
             </PrivateRoute>
+            <PrivateRoute path="/adminpanel">
+                <Announcements/>
+            </PrivateRoute>
         </Switch>
     </BrowserRouter>
 
