@@ -12,7 +12,10 @@ export const getAllCategories = async () => {
         }
     };
     const response = await axios(config)
-    return response.data
+    if (response.status === 200)
+        return response.data
+    else
+        return []
 }
 
 export const addCategory = async (name) => {

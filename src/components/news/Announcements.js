@@ -8,8 +8,10 @@ import {Link, withRouter} from "react-router-dom";
 import {FontAwesomeIcon as FaIcon} from "@fortawesome/react-fontawesome";
 import {faHome} from "@fortawesome/free-solid-svg-icons";
 import _NavigationBar from "../Shared/_NavigationBar";
-import {getUserId, getAllNews} from "./AnnouncementsAPICalls";
+import {getUserId, getAllNews, deleteAnnouncement, getAllStatuses} from "./AnnouncementsAPICalls";
 import {CATEGORIES} from "../../constants";
+import EditAnnouncement from "./EditAnnouncement";
+import AddAnnouncement from "./AddAnnouncement";
 
 const Announcements = (props) => {
 
@@ -29,28 +31,53 @@ const Announcements = (props) => {
         {id: 0, name: ""}
     ])
 
+    const [statuses, setStatuses] = useState([""])
 
+    const [userId, setUserId] = useState()
+
+    const [showEdit, setShowEdit] = useState(false)
+    const [showAdd, setShowAdd] = useState(false)
+
+    const [annToEdit, setAnnToEdit] = useState({})
 
     useEffect(() => {
         getUserId()
             .then(res => {
+                setUserId(res)
                 getAllNews(res)
                     .then(res => setNews(res))
             })
         getAllCategories()
             .then(res => setCategories(res))
-
+        getAllStatuses()
+            .then(res => setStatuses(res))
     }, [])
 
 
-    function clicked() {
-        let cats = categories
+
+    function handleShow(value, annToEdit) {
+        setAnnToEdit(annToEdit)
+        setShowEdit(value)
+    }
+
+    const updateOnSuccess = () => {
+        getAllNews(userId)
+            .then(res => setNews(res))
+    }
+
+    const deleteAnnon = (e) => {
+        const id = parseInt(e.target.name)
+        deleteAnnouncement(id)
+            .then(() => {
+                getAllNews(userId)
+                    .then(res => setNews(res))
+            })
     }
 
     return (
         <>
             <_NavigationBar/>
-            <Button onClick={clicked}/>
+            <Button onClick={() => setShowAdd(true)} >Add</Button>
             <Table striped bordered hover>
                 <thead>
                 <tr>
@@ -73,11 +100,28 @@ const Announcements = (props) => {
                         <td>{v.content}</td>
                         <td>{v.creationDate}</td>
                         <td>{v.expirationDate}</td>
-                        <td>{CATEGORIES[v.categoryId - 1]}</td>
+                        <td>{categories.find(e => e.id === v.categoryId)?.name}</td>
+                        <td>
+                            <Button onClick={() => handleShow(true, v)}>Edit</Button>
+                        </td>
+                        <td>
+                            <Button name={v.id.toString()} onClick={(e) => deleteAnnon(e)}>Delete</Button>
+                        </td>
                     </tr>
                 )) : null}
                 </tbody>
             </Table>
+
+            <AddAnnouncement show={showAdd}
+                             setShow={setShowAdd}
+                             updateOnSucces={updateOnSuccess}
+                             categories={categories}/>
+
+            <EditAnnouncement show={showEdit}
+                              setShowEdit={setShowEdit}
+                              editItem={annToEdit}
+                              setEditItem={setAnnToEdit}
+                              updateOnSucces={updateOnSuccess}/>
         </>
     )
 }
