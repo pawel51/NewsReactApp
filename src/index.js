@@ -15,6 +15,7 @@ import Announcements from "./components/news/Announcements";
 import AdminPanel from "./components/admin/AdminPanel";
 import AdminUsers from "./components/admin/AdminUsers";
 import AdminEditUser from "./components/admin/AdminEditUser";
+import Register from './components/registration/Register';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,6 +25,11 @@ root.render(
 
             <Route path={"/"} exact={true}>
                 <LoginView/>
+            </Route>
+            <Route path={"/register"} exact={true}>
+                <Register/>
+            </Route>
+            <Route path={"/users/users/save"} exact={true}>
             </Route>
             <PrivateRoute path="/categories">
                 <Categories/>
