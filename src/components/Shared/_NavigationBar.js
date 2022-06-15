@@ -25,6 +25,9 @@ const _NavigationBar = (props) => {
                 <Nav className="me-auto">
                     <Nav.Link className={"lastNav"} as={Link} to={"/adminpanel"}>AdminPanel</Nav.Link>
                 </Nav>
+                <Nav className="me-auto">
+                    <Nav.Link className={"lastNav"} as={Link} to={"/moderate"}>Moderate</Nav.Link>
+                </Nav>
                 <NavDropdown title="More" id="basic-nav-dropdown">
                     <NavDropdown.Item as={Link} to={"/"} onClick={logout}>
                         Login
