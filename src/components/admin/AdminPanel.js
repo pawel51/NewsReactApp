@@ -9,28 +9,27 @@ import AdminUsers from './AdminUsers';
 
 import { Link } from 'react-router-dom';
 
-function AdminPanel() {
-    const [tokens, setTokens] = useState({
-        access_token: '',
-        refresh_token: '',
-    });
+function AdminPanel(props) {
 
-    useEffect(() => {
-        sessionStorage.setItem(ACCESS_TOKEN_NAME, tokens.access_token);
-        sessionStorage.setItem(REFRESH_TOKEN_NAME, tokens.refresh_token);
-    }, [tokens]);
+    const [showUsers, setShowUsers] = useState(false)
+
+    function redirectToUsers() {
+        props.history.push("/adminpanel/users")
+    }
 
     return (
         <div className="AdminPanel">
             <nav>
                 <ul>
-                    <Link to="/adminpanel/users">
+                    <Button onClick={() => setShowUsers(true)}>
                         <li>users</li>
-                    </Link>
+                    </Button>
                 </ul>
             </nav>
+
+            {showUsers ? <AdminUsers/> : null}
         </div>
     );
 }
 
-export default AdminPanel;
+export default withRouter(AdminPanel);

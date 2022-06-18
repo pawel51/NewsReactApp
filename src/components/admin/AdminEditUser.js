@@ -34,25 +34,6 @@ function AdminEditUser() {
         id: '',
         roles: [],
     });
-    const [tokens, setTokens] = useState({
-        access_token: '',
-        refresh_token: '',
-    });
-
-
-    useEffect(() => {
-        (async () => {
-            await login('John Travolta', '1234')
-            .then((data) => {
-                console.log(data)
-                setTokens(data)
-            })
-            .catch((err) => {
-                console.log(err.response);
-            });
-        })();
-
-    }, []);
 
     useEffect(() => {
         //setTokens(tokens);
@@ -66,11 +47,6 @@ function AdminEditUser() {
         })();
 
     }, [])
-
-    useEffect(() => {
-        sessionStorage.setItem(ACCESS_TOKEN_NAME, tokens.access_token);
-        sessionStorage.setItem(REFRESH_TOKEN_NAME, tokens.refresh_token);
-    }, [tokens]);
 
 
     const loadUser = async function(username) {
@@ -152,4 +128,4 @@ function AdminEditUser() {
     );
 }
 
-export default AdminEditUser;
+export default withRouter(AdminEditUser);
