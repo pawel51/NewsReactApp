@@ -16,6 +16,7 @@ import AdminPanel from "./components/admin/AdminPanel";
 import AdminUsers from "./components/admin/AdminUsers";
 import AdminEditUser from "./components/admin/AdminEditUser";
 import Register from './components/registration/Register';
+import ModerateAnnouncements from "./components/news/ModerateAnnouncements";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -45,6 +46,9 @@ root.render(
             </PrivateRoute>
             <PrivateRoute path="/adminpanel">
                 <AdminPanel/>
+            </PrivateRoute>
+            <PrivateRoute path="/moderate">
+                <ModerateAnnouncements/> 
             </PrivateRoute>
 
         </Switch>

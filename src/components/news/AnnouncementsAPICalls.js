@@ -23,6 +23,26 @@ export const getAllNews = async (id) => {
 
 }
 
+export const getAllNotPublicNews = async () => {
+
+    const config = {
+        method: 'get',
+        url: `${API_BASE_URL}/api/announcements/notpublic`,
+        headers: {
+            'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
+            'Content-Type': 'application/json'
+        }
+    };
+
+    let response = await axios.request(config)
+    if (response.status === 200)
+        return response.data
+    else{
+        console.log(response)
+        return []
+    }
+}
+
 export const getUserId = async () => {
 
     const config = {
