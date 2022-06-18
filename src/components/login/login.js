@@ -61,9 +61,18 @@ function LoginView(props) {
                     </Row>
 
 
-                    <Button variant="primary" type="submit" onClick={handleSubmitClick}>
-                        Submit
-                    </Button>
+                        <Button variant="primary" type="submit" onClick={handleSubmitClick}>
+                            Submit
+                        </Button>
+
+                        <Link to={"/register"}>
+                            <Button>
+                                Register
+                            </Button>
+                        </Link>
+
+
+
                 </Container>
 
             </Form>

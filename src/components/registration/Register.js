@@ -76,6 +76,11 @@ function Register(props) {
                     <Button variant="primary" type="submit" onClick={handleRegisterClick}>
                         Register
                     </Button>
+                    <Link to={"/"}>
+                        <Button>
+                            Login
+                        </Button>
+                    </Link>
                 </Container>
 
             </Form>
