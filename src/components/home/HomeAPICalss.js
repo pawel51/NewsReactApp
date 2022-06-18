@@ -7,7 +7,7 @@ export const getAllPublicNews = async () => {
 
     const config = {
         method: 'get',
-        url: `${API_BASE_URL}/api/announcements`,
+        url: `${API_BASE_URL}/api/announcements/public`,
         headers: {
             'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
             'Content-Type': 'application/json',
