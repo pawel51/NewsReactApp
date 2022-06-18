@@ -48,7 +48,7 @@ const Users = (props) => {
 
             <_NavigationBar/>
 
-            <Button onClick={loadStudents}>Load Students</Button>
+            <Button onClick={loadStudents}>Load Users</Button>
             <ul>
                 {users.map((v, index) => {
                     return (

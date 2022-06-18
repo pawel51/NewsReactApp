@@ -26,20 +26,17 @@ function LoginView(props) {
         }))
     }
 
-    const handleSubmitClick = async (e) => {
+    const handleSubmitClick = (e) => {
         e.preventDefault()
-        await login(creds)
+        login(creds)
             .then(() => {
                 props.history.push("/categories")
             })
-
-
     }
 
 
     return (
         <>
-            <_NavigationBar/>
             <Form>
                 <Container>
                     <Row>

@@ -23,13 +23,10 @@ export const login = async (creds) => {
             if (response.status === 200) {
                 sessionStorage.setItem(ACCESS_TOKEN_NAME, response.data.access_token);
                 sessionStorage.setItem(REFRESH_TOKEN_NAME, response.data.refresh_token);
-                return true
             }
-            return false
         })
         .catch(function (error) {
             console.log(error);
-            return false
         })
 
 }

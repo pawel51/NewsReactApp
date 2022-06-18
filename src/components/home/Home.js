@@ -44,6 +44,7 @@ const Home = (props) => {
     return (
         <>
             <_NavigationBar/>
+            <h2>All public Announcements</h2>
             <Table striped bordered hover>
                 <thead>
                 <tr>

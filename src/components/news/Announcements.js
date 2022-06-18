@@ -16,15 +16,7 @@ import AddAnnouncement from "./AddAnnouncement";
 const Announcements = (props) => {
 
     const [news, setNews] = useState([
-        {
-            "id": 0,
-            "name": "",
-            "content": "",
-            "creationDate": "2022-06-12 18:11:08",
-            "expirationDate": "2022-06-12 18:11:08",
-            "announcementState": "NotPublic",
-            "categoryId": 0
-        }
+
     ])
 
     const [categories, setCategories] = useState([

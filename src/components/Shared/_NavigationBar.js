@@ -4,9 +4,21 @@ import {faDoorOpen, faHome} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 import {ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME} from "../../constants";
 import "../../App.css"
-import Home from "../home/Home";
+import {useEffect, useState} from "react";
+import {getUserRoles} from "./NavigationAPICalls";
 
 const _NavigationBar = (props) => {
+
+    const [userRoles, setUserRoles] = useState(
+        []
+    )
+
+    useEffect(() => {
+
+        getUserRoles()
+            .then(res => setUserRoles(res))
+
+    }, [])
 
     const logout = () => {
         sessionStorage.removeItem(ACCESS_TOKEN_NAME)
@@ -24,12 +36,16 @@ const _NavigationBar = (props) => {
                 <Nav className="me-auto">
                     <Nav.Link className={"lastNav"} as={Link} to={"/announcements"}>My Announcements</Nav.Link>
                 </Nav>
-                <Nav className="me-auto">
-                    <Nav.Link className={"lastNav"} as={Link} to={"/adminpanel"}>AdminPanel</Nav.Link>
-                </Nav>
-                <Nav className="me-auto">
-                    <Nav.Link className={"lastNav"} as={Link} to={"/moderate"}>Moderate</Nav.Link>
-                </Nav>
+                {userRoles.filter(roles => roles.name === "ROLE_ADMIN").length > 0 ?
+                    <Nav className="me-auto">
+                        <Nav.Link className={"lastNav"} as={Link} to={"/adminpanel"}>AdminPanel</Nav.Link>
+                    </Nav> : null
+                }
+                {userRoles.filter(roles => roles.name === "ROLE_ADMIN" || roles.name === "ROLE_MANAGER").length > 0?
+                    <Nav className="me-auto">
+                        <Nav.Link className={"lastNav"} as={Link} to={"/moderate"}>Moderate</Nav.Link>
+                    </Nav> : null
+                }
                 <NavDropdown title="More" id="basic-nav-dropdown">
                     <NavDropdown.Item as={Link} to={"/"} onClick={logout}>
                         Login

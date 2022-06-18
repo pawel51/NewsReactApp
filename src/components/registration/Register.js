@@ -40,7 +40,6 @@ function Register(props) {
 
     return (
         <>
-            <_NavigationBar/>
             <Form>
                 <Container>
                     <Row>
