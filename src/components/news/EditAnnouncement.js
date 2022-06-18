@@ -17,8 +17,6 @@ const EditAnnouncement = (props) => {
 
     const [isEditing, setIsEditing] = useState(false)
 
-
-
     function editHandler() {
         setIsEditing(true)
         editAnnouncement(props.editItem)

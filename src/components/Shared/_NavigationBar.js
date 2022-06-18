@@ -4,6 +4,7 @@ import {faDoorOpen, faHome} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 import {ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME} from "../../constants";
 import "../../App.css"
+import Home from "../home/Home";
 
 const _NavigationBar = (props) => {
 
@@ -15,12 +16,13 @@ const _NavigationBar = (props) => {
     return (
         <Navbar bg="light" variant="light">
             <Container>
-                <Navbar.Brand href="/"><FaIcon icon={faHome}/></Navbar.Brand>
+                <Navbar.Brand href="/home"><FaIcon icon={faHome}/>
+                </Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link className={"lastNav"} as={Link} to={"/categories"}>Categories</Nav.Link>
                 </Nav>
                 <Nav className="me-auto">
-                    <Nav.Link className={"lastNav"} as={Link} to={"/announcements"}>Announcements</Nav.Link>
+                    <Nav.Link className={"lastNav"} as={Link} to={"/announcements"}>My Announcements</Nav.Link>
                 </Nav>
                 <Nav className="me-auto">
                     <Nav.Link className={"lastNav"} as={Link} to={"/adminpanel"}>AdminPanel</Nav.Link>

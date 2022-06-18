@@ -9,7 +9,8 @@ export const getAllNews = async (id) => {
         url: `${API_BASE_URL}/api/users/${id}/announcements`,
         headers: {
             'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': "*"
         }
     };
 
@@ -30,7 +31,8 @@ export const getAllNotPublicNews = async () => {
         url: `${API_BASE_URL}/api/announcements/notpublic`,
         headers: {
             'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': "*"
         }
     };
 
@@ -50,7 +52,8 @@ export const getUserId = async () => {
         url: `${API_BASE_URL}/api/user`,
         headers: {
             'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': "*"
         }
     };
 
@@ -69,7 +72,8 @@ export const editAnnouncement = async (editItem) => {
         url: `${API_BASE_URL}/api/announcements/${editItem.id}`,
         headers: {
             'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': "*"
         },
         data: editItem
     };
@@ -88,7 +92,8 @@ export const deleteAnnouncement = async (id) => {
         url: `${API_BASE_URL}/api/announcements/${id}`,
         headers: {
             'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': "*"
         }
     };
 
@@ -114,7 +119,8 @@ export const addAnnouncement = async (newItem) => {
         url: `${API_BASE_URL}/api/announcements`,
         headers: {
             'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': "*"
         },
         data: dataStr
     };
@@ -140,7 +146,8 @@ export const getAllStatuses = async () => {
         url: `${API_BASE_URL}/api/announcements/states`,
         headers: {
             'Authorization': `Bearer ${sessionStorage.getItem(ACCESS_TOKEN_NAME)}`,
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': "*"
         }
     };
 
